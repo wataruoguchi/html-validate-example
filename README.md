@@ -17,4 +17,4 @@ While I was using Selenium I realized that a duplicated id exists. I want to mak
 
 I am going to implement this into PHPUnit test code.
 
-** This is just a sample code. Don't use your production if you don't know what it does. **
+** This is just a sample code. Don't use it for your production if you don't know what it does. **
