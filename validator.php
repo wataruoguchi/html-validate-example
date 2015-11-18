@@ -22,13 +22,15 @@
   $url = "index.html";
   $response = @file_get_contents($url) or die("Cannot access file: $url");
   echo "<h4>Check multiple id</h4>";
-  $multi_id_pattern = "/id=[\"']([a-zA-Z0-9|-]+) +([a-zA-Z0-9|-]+)?[\"']/";
+  // http://stackoverflow.com/questions/15337783/regular-expression-to-match-an-html-id
+  $regex_id = "[A-Za-z][A-Za-z0-9_:\.-]+";
+  $multi_id_pattern = "/id=[\"'](".$regex_id.") +(".$regex_id.")(.*)?[\"']/";
   preg_match_all($multi_id_pattern, $response, $out, PREG_SET_ORDER);
   pr($out);
   echo (count($out[0]) > 0) ? "<p class='error'>Invalid</p>" : "<p>Valid</p>";
   echo "<hr>";
   echo "<h4>Check duplicated id</h4>";
-  $id_pattern = "/id=[\"']([a-zA-Z0-9|-]+)?[\"']/";
+  $id_pattern = "/id=[\"'](".$regex_id.")?[\"']/";
   preg_match_all($id_pattern, $response, $out, PREG_SET_ORDER);
   pr($out);
 
